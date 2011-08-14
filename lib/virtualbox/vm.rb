@@ -193,6 +193,17 @@ module VirtualBox
         Global.global(true).vms
       end
 
+      # Creates and registers a new VM, and returns a
+      # new VM object.
+      #
+      # @return [VM]
+      def create(name)
+        settings = VirtualBox::Lib.lib.virtualbox.compose_machine_filename(name)
+        imachine = VirtualBox::Lib.lib.virtualbox.create_machine(settings, name)
+        VirtualBox::Lib.lib.virtualbox.register_machine(imachine)
+        return VirtualBox::VM.new(imachine)
+      end
+
       # Finds a VM by UUID or registered name and returns a
       # new VM object. If the VM doesn't exist, will return `nil`.
       #
