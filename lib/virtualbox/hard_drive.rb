@@ -134,7 +134,7 @@ module VirtualBox
 
       validates_presence_of :location
 
-      max_vdi_size = Global.global.system_properties.info_vdi_size
+      max_vdi_size = Global.global.system_properties.info_vd_size
       validates_inclusion_of :logical_size, :in => (0..max_vdi_size), :message => "must be between 0 and #{max_vdi_size}."
     end
 
