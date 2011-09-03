@@ -30,7 +30,13 @@ module VirtualBox
 
     def initialize(parent, imedium_attachment)
       populate_attributes({:parent => parent}, :ignore_relationships => true)
-      initialize_attributes(imedium_attachment)
+      case imedium_attachment.class
+      when VirtualBox::HardDrive
+        populate_relationship(:medium, imedium_attachement)
+        populate_relationship(:storage_controller, self)
+      else 
+        initialize_attributes(imedium_attachment)
+      end
     end
 
     def initialize_attributes(ima)
