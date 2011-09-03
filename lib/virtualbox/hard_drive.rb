@@ -160,7 +160,8 @@ module VirtualBox
       # Expand path relative to the default hard disk folder. This allows
       # filenames to exist in the default folder while full paths will use
       # the paths specified.
-      outputfile = File.expand_path(outputfile, virtualbox.system_properties.default_hard_disk_folder)
+      # outputfile = File.expand_path(outputfile, virtualbox.system_properties.default_hard_disk_folder)
+      outputfile = File.expand_path(outputfile, virtualbox.system_properties.default_machine_folder)
 
       # If the outputfile path is in use by another Hard Drive, lets fail
       # now with a meaningful exception rather than simply return a nil
